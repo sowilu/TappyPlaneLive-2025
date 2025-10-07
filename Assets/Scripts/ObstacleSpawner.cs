@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
+    public List<GameObject> obstaclePrefabs;
     public float cooldown = 3;
     
     private float lastSpawnTime;
@@ -15,7 +14,8 @@ public class ObstacleSpawner : MonoBehaviour
         if (Time.time - lastSpawnTime > cooldown)
         {
             lastSpawnTime = Time.time;
-            Instantiate(obstaclePrefab); //position, rotation, parent
+            GameObject obstacle = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)];
+            Instantiate(obstacle); //position, rotation, parent
         }
     }
 }
